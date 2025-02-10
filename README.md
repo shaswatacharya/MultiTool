@@ -61,8 +61,6 @@
 
 ## 📅 Changelog
 
-- **v1.2:** ✨ Added Cyber Map, Remote Desktop & UI improvements.
-- **v1.1:** 🔐 Enhanced encryption tools, added system utilities.
 - **v1.0:** 🚀 Initial release with basic network and system tools.
 
 ---
