@@ -90,8 +90,8 @@ echo [91m                                           --------------PAGE ONE-----
 echo.
 echo [92m                                 ╔═══════════════════════════════════════════════════════════╗
 echo [92m                                 ║        [1] PuTTy          [6] DnsPortPingSpeed            ║
-echo [92m                                 ║        [2] IP Pinger      [7]                             ║
-echo [92m                                 ║        [3]                                                ║
+echo [92m                                 ║        [2] IP Pinger      [7] ASCII text                  ║
+echo [92m                                 ║        [3] Stresser                                       ║
 echo [92m                                 ║        [4] BAT TO EXE                                     ║
 echo [92m                                 ║        [5] IP LookUp                                      ║
 echo [92m                                 ║                                                           ║
@@ -102,9 +102,11 @@ set /p picks=[%user%] :
 
 if %picks% == 1 goto putty
 if %picks% == 2 goto ippinger
+if %picks% == 3 goto stresser
 if %picks% == 4 goto bat2exe
 if %picks% == 5 goto iplookup
 if %picks% == 6 goto dnsportipping
+if %picks% == 7 goto bigtexts
 if %picks% == Next goto Main2
 if %picks% == next goto Main2
 if %picks% == 99 goto credits
@@ -134,23 +136,31 @@ echo [91m                                ---------------CHOOSE THE TOOLS TO PRO
 echo [91m                                           --------------PAGE TWO-----------------
 echo.
 echo [92m                      ╔══════════════════════════════════════════════════════════════════════════════╗
-echo [92m                      ║ [1] Lock/Unlock file     [6]                     [11] ViewAllPc in Network   ║
-echo [92m                      ║ [2]                      [7]                     [12]                        ║
-echo [92m                      ║ [3]                      [8]                     [13] All NET CMD            ║
-echo [92m                      ║ [4]                      [9] Know WIFI Pass      [14] System Info            ║
-echo [92m                      ║ [5] Calculator           [10] Rename File        [15]                        ║
+echo [92m                      ║ [1] Lock/Unlock file     [6] Web crasher         [11] ViewAllPc in Network   ║
+echo [92m                      ║ [2] Web Tracker          [7] Random Text Gen     [12] Remote Desktop         ║
+echo [92m                      ║ [3] Cyber Map            [8] Encrypt/Decrypt     [13] All NET CMD            ║
+echo [92m                      ║ [4] Crack RaR Password   [9] Know WIFI Pass      [14] System Info            ║
+echo [92m                      ║ [5] Calculator           [10] Rename File        [15] Mode SSH               ║
 echo [92m                      ║                                                                              ║
 echo [92m                      ║ Back page: [Back]          [99] Credits                 Next Page: [Next]    ║
 echo [92m                      ╚══════════════════════════════════════════════════════════════════════════════╝
 echo.
 set /p pick=[%user%]: 
 if %pick% == 1 goto lockunlock
+if %pick% == 2 goto ddostools
+if %pick% == 3 goto cmap
+if %pick% == 4 goto crackrar
 if %pick% == 5 goto calculator
+if %pick% == 6 goto web_crasher
+if %pick% == 7 goto randgen
+if %pick% == 8 goto encdec
 if %pick% == 9 goto knowwifi
 if %pick% == 10 goto renfile
 if %pick% == 11 goto allpcnetwork
+if %pick% == 12 goto remdesk
 if %pick% == 13 goto allnetcmd
 if %pick% == 14 goto systemin
+if %pick% == 15 goto modeSSH
 if %pick% == 99 goto credits
 if %pick% == back goto Main
 if %pick% == Back goto Main
@@ -183,8 +193,8 @@ echo [91m                                           --------------PAGE THREE---
 echo.
 echo [92m                      ╔═══════════════════════════════════════════════════════════════════════════╗
 echo [92m                      ║         [1] Window Version       [6] PC Setting                           ║
-echo [92m                      ║         [2]                      [7]                                      ║
-echo [92m                      ║         [3] Mode WMIC            [8]                                      ║
+echo [92m                      ║         [2] Status Device Mode   [7]                                      ║
+echo [92m                      ║         [3] Mode WMIC                                                     ║
 echo [92m                      ║         [4] Task List                                                     ║
 echo [92m                      ║         [5] Change Time                                                   ║
 echo [92m                      ║                                                                           ║
@@ -193,6 +203,7 @@ echo [92m                      ╚═══════════════
 echo.
     set /p pickz=[%user%]: 
     if %pickz% == 1 goto winve
+    if %pickz% == 2 goto modedev
     if %pickz% == 3 goto modewmic
     if %pickz% == 4 goto tasklists
     if %pickz% == 5 goto timechanger
@@ -353,6 +364,11 @@ echo.
 
     goto Main3
 
+:modedev
+    echo =====Displaying current device mode=====
+    MODE
+    pause
+    goto Main3
 
 
 :winve
@@ -362,6 +378,28 @@ echo.
     winver
     pause
     goto Main3
+
+:modeSSH
+    cls
+    set prevmenu=24
+    title SSH Mode
+    echo.
+    echo Entering SSH Mode, Purely runs SSH commands.
+    echo.
+    echo Type "exit" to go back to the main menu.
+    echo.
+    :modssh
+    echo 0. Back to Main
+    set /p sshinput=Enter your SSH command: 
+
+    if "%sshinput%" == "0" goto Main2
+    if "%sshinput%" == "exit" goto Main2
+
+    rem Running the SSH command
+    ssh %sshinput%
+
+    pause
+    goto modssh
 
 
 :systemin
@@ -416,7 +454,18 @@ echo.
     pause
     goto allnetcmd
 
-
+:remdesk
+    echo.
+    echo [+] OPEN REMOTE DESKTOP CONNECTION [+]
+    echo.
+    timeout 2 >nul
+    set /p ip=Enter the IP or hostname of the remote machine: 
+    echo.
+    echo =====Trying to establish Connection=====
+    timeout 1 >nul
+    mstsc /v:%ip%
+    pause
+    goto Main2
 
 
 :allpcnetwork
@@ -525,7 +574,9 @@ timeout 4 >nul
 goto Main2
 
 
-
+:cmap
+start https://cybermap.kaspersky.com/
+	goto Main2
 
 
 
@@ -1026,7 +1077,12 @@ pause
 goto knowwifi
 
 
-
+:bigtexts
+    echo Loading the Website...
+    timeout 2 >nul
+    start https://www.asciiart.eu/text-to-ascii-art
+    pause
+    goto Main
 
 
 :dnsportipping
@@ -1205,6 +1261,25 @@ curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.p
 pause
 goto speed_test
 
+:stresser
+cls
+echo ===========================================================
+echo       Stress Testing: Send Requests to Your Server
+echo -----------------------------------------------------------
+echo Please note: Only stress test servers you own or have permission to test!
+echo -----------------------------------------------------------
+set /p url= Enter the URL to stress test (e.g., http://localhost:8080): 
+set /p requests= Enter the number of requests to send: 
+
+echo Starting stress test on %url% with %requests% requests...
+for /L %%i in (1,1,%requests%) do (
+    echo Sending request %%i...
+    curl -s -o NUL %url%
+)
+
+echo Stress test complete!
+pause
+goto Main
 
 
 
